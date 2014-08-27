@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>   
+   <extension
+         point="org.eclipse.ui.perspectives">
+         <perspective
+            name="Anteros Help-me"
+            icon="icons/anteros-16x16.png"
+            class="br.com.anteros.helpme.perspectives.AnterosHelpmePerspective"
+            id="br.com.anteros.helpme.perspectives.AnterosHelpmePerspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+         <editor
+            name="SQL Editor"
+            extensions="sql"
+            icon="icons/editorSql.png"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            class="br.com.anteros.helpme.views.SQLEditorView"
+            id="br.com.anteros.helpme.views.SQLEditorView">
+      </editor>
+      <editor
+            name="Configuration"
+            default="true"
+            icon="icons/file_obj.gif"
+            class="br.com.anteros.helpme.forms.SimpleFormEditor"
+            id="br.com.anteros.helpme.forms.SimpleFormEditor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+         <category name="Anteros Help-me" id="br.com.anteros.AnterosHelpme">
+      </category>
+         <view
+            name="Anteros Help-me Project"
+            icon="icons/anteros-16x16.png"
+            category="br.com.anteros.AnterosHelpme"
+            class="br.com.anteros.helpme.views.ProjectNavigatorView"
+            id="br.com.anteros.helpme.views.ProjectNavigatorView">
+      </view>
+      <view
+            name="Anteros Help-me Console"
+            icon="icons/anteros-16x16.png"
+            category="br.com.anteros.AnterosHelpme"
+            class="br.com.anteros.helpme.views.ConsoleSQLView"
+            id="br.com.anteros.helpme.views.ConsoleSQLView">
+      </view>
+   </extension>
+   
+   	<extension point="org.eclipse.ui.preferencePages">
+ 		<page id="AnterosHelpmePreferences"
+  	      name="Anteros Help-me"
+  	      icon="icons/anteros-16x16.png"
+	      class="br.com.anteros.helpme.preferences.Preferences">
+   		</page>
+   	</extension> 
+   
+   
+   	
+</plugin>
