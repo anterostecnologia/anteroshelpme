@@ -11,7 +11,7 @@ import org.eclipse.ui.IPersistableElement;
 import org.eclipse.ui.IStorageEditorInput;
 
 public class SQLEditorInput implements IStorageEditorInput {
-	String name = "EasySQL Editor";
+	String name = "Anteros SQL Editor";
 	IStorage is;
 
 	public SQLEditorInput() {

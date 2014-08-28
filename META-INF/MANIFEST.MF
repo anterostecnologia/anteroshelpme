@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Anteros-Helpme
 Bundle-SymbolicName: Anteros-Helpme;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: anteros_helpme.Activator
+Bundle-Activator: br.com.anteros.helpme.AnterosHelpmePlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.9.0",

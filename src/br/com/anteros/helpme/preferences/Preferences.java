@@ -16,7 +16,7 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 	 */
 	public Preferences() {
 		setDescription("Color");
-		setTitle("Anteros Tools");
+		setTitle("Anteros Helpme");
 	}
 
 	/**

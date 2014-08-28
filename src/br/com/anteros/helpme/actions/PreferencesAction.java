@@ -25,7 +25,7 @@ public class PreferencesAction extends AbstractViewAction {
 	public void run() {
 		IPreferencePage page = new Preferences();
 		PreferenceManager mgr = new PreferenceManager();
-		IPreferenceNode node = new PreferenceNode("Anteros Tools", page);
+		IPreferenceNode node = new PreferenceNode("Anteros Helpme", page);
 		mgr.addToRoot(node);
 		PreferenceDialog dialog = new PreferenceDialog(AnterosHelpmePlugin.getDefault().getShell(), mgr);
 		dialog.create();

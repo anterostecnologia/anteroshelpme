@@ -50,11 +50,12 @@ import br.com.anteros.helpme.util.ResourceManager;
 import br.com.anteros.helpme.views.ConsoleSQLView;
 
 public class AnterosHelpmePlugin extends AbstractUIPlugin {
-	
-	private static Logger logger = LoggerProvider.getInstance().getLogger(AnterosHelpmePlugin.class.getName());
 
-	public static final String PLUGIN_ID = "br.com.anteros.helpme.AnterosTools";
-	public static final String TITLE = "Anteros Tools";
+	private static Logger logger = LoggerProvider.getInstance().getLogger(
+			AnterosHelpmePlugin.class.getName());
+
+	public static final String PLUGIN_ID = "br.com.anteros.helpme.AnterosHelpme";
+	public static final String TITLE = "Anteros Help-me";
 	public static final String CONSOLE_NAME = "Anteros Console - Error";
 
 	public static final String IMG_ANTEROS_16_16 = "anteros-16x16.png";
@@ -132,22 +133,22 @@ public class AnterosHelpmePlugin extends AbstractUIPlugin {
 	public static final String IMG_FIREBIRD = "firebird.gif";
 	public static final String IMG_MYSQL = "mysql.gif";
 	public static final String IMG_POSTGRESQL = "postgresql.gif";
-	public static final String IMG_PACKAGE = "package_obj.gif"; 
-	public static final String IMG_INTERFACE = "interface.gif"; 
-	public static final String IMG_REFERENCE = "reference.gif"; 
-	public static final String IMG_INHERITANCE = "inheritance.gif"; 
-	public static final String IMG_ATTRIBUTE = "attribute.gif"; 
-	public static final String IMG_OPERATION = "operation.gif"; 
-	public static final String IMG_FIELD_PUBLIC = "field_public_obj.gif"; 
-	public static final String IMG_METHOD_PUBLIC = "methpub_obj.gif"; 
-	public static final String IMG_STICKY_NOTE = "sticky_note.gif"; 
-	public static final String IMG_CONNECTION = "connection16.gif"; 
-	public static final String IMG_TWO_WAY_REFERENCE = "twoReferences.gif"; 
-	public static final String IMG_DATATYPE = "dataType.gif"; 
-	public static final String IMG_ENUM_LITERAL = "enumLiteral.gif"; 
-	public static final String IMG_SNAP = "geometry.gif"; 
-	public static final String IMG_SNAP_DISABLED = "geom_dis.gif"; 
-	public static final String IMG_NEW_DIAGRAM_WIZARD = "class_diagram_wiz.gif"; 
+	public static final String IMG_PACKAGE = "package_obj.gif";
+	public static final String IMG_INTERFACE = "interface.gif";
+	public static final String IMG_REFERENCE = "reference.gif";
+	public static final String IMG_INHERITANCE = "inheritance.gif";
+	public static final String IMG_ATTRIBUTE = "attribute.gif";
+	public static final String IMG_OPERATION = "operation.gif";
+	public static final String IMG_FIELD_PUBLIC = "field_public_obj.gif";
+	public static final String IMG_METHOD_PUBLIC = "methpub_obj.gif";
+	public static final String IMG_STICKY_NOTE = "sticky_note.gif";
+	public static final String IMG_CONNECTION = "connection16.gif";
+	public static final String IMG_TWO_WAY_REFERENCE = "twoReferences.gif";
+	public static final String IMG_DATATYPE = "dataType.gif";
+	public static final String IMG_ENUM_LITERAL = "enumLiteral.gif";
+	public static final String IMG_SNAP = "geometry.gif";
+	public static final String IMG_SNAP_DISABLED = "geom_dis.gif";
+	public static final String IMG_NEW_DIAGRAM_WIZARD = "class_diagram_wiz.gif";
 
 	private static AnterosHelpmePlugin plugin;
 
@@ -159,7 +160,8 @@ public class AnterosHelpmePlugin extends AbstractUIPlugin {
 
 	public AnterosHelpmePlugin() {
 		try {
-			resourceBundle = ResourceBundle.getBundle("br.com.anteros.helpme.AnterosHelpmePluginResources");
+			resourceBundle = ResourceBundle
+					.getBundle("br.com.anteros.helpme.AnterosHelpmePluginResources");
 		} catch (MissingResourceException x) {
 			resourceBundle = null;
 		}
@@ -169,7 +171,7 @@ public class AnterosHelpmePlugin extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		loadSettings();
-		
+
 	}
 
 	private void loadSettings() {
@@ -237,11 +239,13 @@ public class AnterosHelpmePlugin extends AbstractUIPlugin {
 	}
 
 	public static IViewPart findView(String id) {
-		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findView(id);
+		return PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+				.getActivePage().findView(id);
 	}
 
 	public static void showView(String id) throws Exception {
-		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(id);
+		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+				.showView(id);
 	}
 
 	public static void getCloseEditors(IEditorReference[] editorRefs) {
@@ -249,34 +253,41 @@ public class AnterosHelpmePlugin extends AbstractUIPlugin {
 	}
 
 	public static void showInformationMessage(String message) {
-		MessageDialog.openInformation(AnterosHelpmePlugin.getDefault().getShell(), TITLE, message);
+		MessageDialog.openInformation(AnterosHelpmePlugin.getDefault()
+				.getShell(), TITLE, message);
 	}
 
 	public static void showWarningMessage(String message) {
-		MessageDialog.openWarning(AnterosHelpmePlugin.getDefault().getShell(), TITLE, message);
+		MessageDialog.openWarning(AnterosHelpmePlugin.getDefault().getShell(),
+				TITLE, message);
 	}
 
 	public static boolean confirmDialog(String message) {
-		return MessageDialog.openConfirm(AnterosHelpmePlugin.getDefault().getShell(), TITLE, message);
+		return MessageDialog.openConfirm(AnterosHelpmePlugin.getDefault()
+				.getShell(), TITLE, message);
 	}
 
-	public static MessageDialogWithToggle confirmDialogWithToggle(String message, String toggleMessage,
-			boolean toggleStatus) {
-		return MessageDialogWithToggle.openYesNoQuestion(AnterosHelpmePlugin.getDefault().getShell(), TITLE, message,
-				toggleMessage, toggleStatus, null, null);
+	public static MessageDialogWithToggle confirmDialogWithToggle(
+			String message, String toggleMessage, boolean toggleStatus) {
+		return MessageDialogWithToggle.openYesNoQuestion(AnterosHelpmePlugin
+				.getDefault().getShell(), TITLE, message, toggleMessage,
+				toggleStatus, null, null);
 	}
 
-	public void openEditor(IEditorInput editorInput, String editorID, boolean activate) throws Exception {
+	public void openEditor(IEditorInput editorInput, String editorID,
+			boolean activate) throws Exception {
 		IDE.openEditor(getPage(), editorInput, editorID, activate);
 	}
 
 	public boolean isActivePerspective(String perspective) {
 		boolean isFound = false;
 
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		IWorkbenchPage page = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage();
 		IPerspectiveDescriptor perspectiveDescriptor = page.getPerspective();
 
-		if (perspectiveDescriptor != null && perspectiveDescriptor.getId().equals(perspective))
+		if (perspectiveDescriptor != null
+				&& perspectiveDescriptor.getId().equals(perspective))
 			isFound = true;
 
 		return isFound;
@@ -311,7 +322,8 @@ public class AnterosHelpmePlugin extends AbstractUIPlugin {
 
 	public SQLProjectManager getSQLProjectManager() {
 		if (sqlProjectManager == null)
-			sqlProjectManager = new SQLProjectManager(projectRoot.getProjectManager());
+			sqlProjectManager = new SQLProjectManager(
+					projectRoot.getProjectManager());
 
 		return sqlProjectManager;
 	}
@@ -328,23 +340,32 @@ public class AnterosHelpmePlugin extends AbstractUIPlugin {
 	}
 
 	public void setSQLCursor() {
-		getShell().setCursor(new Cursor(getShell().getDisplay(), getImage(IMG_CURSOR_SQL).getImageData(), 0, 0));
+		getShell().setCursor(
+				new Cursor(getShell().getDisplay(), getImage(IMG_CURSOR_SQL)
+						.getImageData(), 0, 0));
 	}
 
 	public void setHourGlassCursor() {
-		getShell().setCursor(new Cursor(getShell().getDisplay(), getImage(IMG_CURSOR_HOUR_GLASS).getImageData(), 0, 0));
+		getShell().setCursor(
+				new Cursor(getShell().getDisplay(), getImage(
+						IMG_CURSOR_HOUR_GLASS).getImageData(), 0, 0));
 	}
 
 	public void setDefaultCursor() {
-		getShell().setCursor(new Cursor(AnterosHelpmePlugin.getDefault().getShell().getDisplay(), SWT.CURSOR_ARROW));
+		getShell().setCursor(
+				new Cursor(AnterosHelpmePlugin.getDefault().getShell()
+						.getDisplay(), SWT.CURSOR_ARROW));
 	}
-	
+
 	public void setWaitCursor() {
-		getShell().setCursor(new Cursor(AnterosHelpmePlugin.getDefault().getShell().getDisplay(), SWT.CURSOR_WAIT));
+		getShell().setCursor(
+				new Cursor(AnterosHelpmePlugin.getDefault().getShell()
+						.getDisplay(), SWT.CURSOR_WAIT));
 	}
 
 	public static String getResourceString(String key) {
-		ResourceBundle bundle = AnterosHelpmePlugin.getDefault().getResourceBundle();
+		ResourceBundle bundle = AnterosHelpmePlugin.getDefault()
+				.getResourceBundle();
 		try {
 			return bundle.getString(key);
 		} catch (MissingResourceException e) {
@@ -357,35 +378,45 @@ public class AnterosHelpmePlugin extends AbstractUIPlugin {
 	}
 
 	public static void error(String message, Throwable t, boolean showError) {
-		getDefault().getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, IStatus.ERROR, String.valueOf(message), t));
-		logger.error(message, t);
+		if (getDefault() != null) {
+			getDefault().getLog().log(
+					new Status(IStatus.ERROR, PLUGIN_ID, IStatus.ERROR, String
+							.valueOf(message), t));
+			logger.error(message, t);
 
-		try {
-			AnterosHelpmePlugin.getDefault().getPage().showView("org.eclipse.pde.runtime.LogView");
-		} catch (Exception e) {
-		}
+			try {
+				AnterosHelpmePlugin.getDefault().getPage()
+						.showView("org.eclipse.pde.runtime.LogView");
+			} catch (Exception e) {
+			}
 
-		StringWriter sw = new StringWriter();
-		PrintWriter pw = new PrintWriter(sw);
-		t.printStackTrace(pw);
-		errorToConsole(t);
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			t.printStackTrace(pw);
+			errorToConsole(t);
 
-		if (showError) {
-			showError(message);
+			if (showError) {
+				showError(message);
+			}
 		}
 	}
 
 	public static void error(String message, boolean showError) {
-		getDefault().getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, IStatus.ERROR, String.valueOf(message), null));
+		getDefault().getLog().log(
+				new Status(IStatus.ERROR, PLUGIN_ID, IStatus.ERROR, String
+						.valueOf(message), null));
 		logger.error(message);
 
 		try {
-			AnterosHelpmePlugin.getDefault().getPage().showView("org.eclipse.pde.runtime.LogView");
+			AnterosHelpmePlugin.getDefault().getPage()
+					.showView("org.eclipse.pde.runtime.LogView");
 		} catch (Exception e) {
 		}
 
 		if (showError)
-			MessageDialog.openError(AnterosHelpmePlugin.getDefault().getShell(), "Atenção", message);
+			MessageDialog.openError(
+					AnterosHelpmePlugin.getDefault().getShell(), "Atenção",
+					message);
 	}
 
 	public static void error(Throwable e, boolean showError) {
@@ -393,7 +424,8 @@ public class AnterosHelpmePlugin extends AbstractUIPlugin {
 	}
 
 	public static void showError(String message) {
-		MessageDialog.openError(AnterosHelpmePlugin.getDefault().getShell(), "Atenção", message);
+		MessageDialog.openError(AnterosHelpmePlugin.getDefault().getShell(),
+				"Atenção", message);
 	}
 
 	public static void errorToConsole(Throwable t) {
@@ -422,16 +454,15 @@ public class AnterosHelpmePlugin extends AbstractUIPlugin {
 		AnterosHelpmePlugin.showView(ConsoleSQLView.ID);
 		return (ConsoleSQLView) AnterosHelpmePlugin.findView(ConsoleSQLView.ID);
 	}
-	
+
 	public ImageDescriptor getItemImageDescriptor(Object item) {
 		return null;
 	}
-	
+
 	public static ImageDescriptor getBundledImageDescriptor(String path) {
 		return AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
 
-	
 	public Image getBundledImage(String path) {
 		Image image = getImageRegistry().get(path);
 		if (image == null) {
@@ -442,4 +473,3 @@ public class AnterosHelpmePlugin extends AbstractUIPlugin {
 	}
 
 }
- 
