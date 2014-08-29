@@ -392,7 +392,7 @@ public class PluginUtils {
 			if (rawLocation == null) {
 				rawLocation = member.getLocation();
 				if (rawLocation == null) {
-					throw new Exception("N�o foi poss�vel determinar a localiza��o " + simplePath);
+					throw new Exception("Não foi possível determinar a localização " + simplePath);
 				}
 			}
 			file = rawLocation.toFile();
@@ -561,7 +561,7 @@ public class PluginUtils {
 				wd.open();
 			}
 		} catch (CoreException e) {
-			throw new Exception("N�o foi poss�vel abrir o wizard. "+e.getMessage());
+			throw new Exception("Não foi possível abrir o wizard. "+e.getMessage());
 		}
 	}
 

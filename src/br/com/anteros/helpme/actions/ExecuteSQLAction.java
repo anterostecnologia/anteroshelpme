@@ -1,5 +1,6 @@
 package br.com.anteros.helpme.actions;
 
+import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -57,6 +58,8 @@ public class ExecuteSQLAction extends AbstractAction {
 			try {
 				AnterosHelpmePlugin.getDefault().setWaitCursor();
 				URLClassLoader newClassLoader = PluginUtils.getProjectClassLoader(javaProject);
+				
+				
 				Thread.currentThread().setContextClassLoader(newClassLoader);
 
 				SqlParser parser = new SqlParser(getView().getText(), new SqlFormatRule());

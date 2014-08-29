@@ -11,7 +11,7 @@ public class ProjectRoot extends TreeNode {
 			this.addNode(new ProjectManager());
 		} catch (Exception e) {
 			AnterosHelpmePlugin.error(
-					"N�o foi poss�vel inicializar o Gerenciador de Projetos.", e, true);
+					"Não foi possível inicializar o Gerenciador de Projetos.", e, true);
 		}
 	}
 

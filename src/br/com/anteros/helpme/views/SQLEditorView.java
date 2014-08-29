@@ -362,8 +362,9 @@ public class SQLEditorView extends EditorPart implements SQLSessionListener {
 				int i = 1;
 				for (Object obj : result.getResultList()) {
 					Identifier<?> id = project.getSession().getIdentifier(obj);
-					vo = new VariableObject(obj, cache, project.getSession(), true);
-					vo.setName(new String[] { cache.getEntityClass().getSimpleName() + " " + i, id + "" });
+					vo = new VariableObject(obj, project.getSession().getEntityCacheManager()
+							.getEntityCache(obj.getClass()), project.getSession(), true);
+					vo.setName(new String[] { obj.getClass().getSimpleName() + " " + i, id + "" });
 					variableRoot.addNode(vo);
 					i++;
 				}

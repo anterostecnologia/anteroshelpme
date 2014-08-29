@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry exported="true" kind="lib" path="lib/javassist-3.12.1.GA.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jaybird-full-2.2.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/mysql-connector-java-5.1.31.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/postgresql-9.2-1003.jdbc4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/simple-xml-2.7.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/Anteros-Core-0.0.1-SNAPSHOT.jar" sourcepath="/Anteros-Core/src"/>
-	<classpathentry exported="true" kind="lib" path="lib/Anteros-Persistence-0.0.2-SNAPSHOT.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons-io-1.4.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
@@ -9,6 +13,8 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Anteros-Core"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Anteros-Persistence"/>
 	<classpathentry kind="lib" path="lib/xmlpull-1.1.3.1.jar"/>
-	<classpathentry kind="lib" path="lib/xstream-1.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/xstream-1.4.7.jar" sourcepath="/Users/edson/Downloads/xstream-1.4-2.7/xstream/src"/>
+	<classpathentry kind="lib" path="lib/xpp3_min-1.1.4c.jar"/>
+	<classpathentry kind="lib" path="lib/Anteros-Persistence-0.0.3-SNAPSHOT.jar" sourcepath="/Anteros-Persistence/src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

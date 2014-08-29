@@ -1,17 +1,27 @@
 package br.com.anteros.helpme.model;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.launching.JavaRuntime;
 import org.eclipse.swt.graphics.Image;
 
 import br.com.anteros.helpme.AnterosHelpmePlugin;
 import br.com.anteros.helpme.model.persistence.SQLProjectPersistent;
 import br.com.anteros.helpme.treeviewer.IObjectNode;
 import br.com.anteros.helpme.treeviewer.TreeNode;
+import br.com.anteros.helpme.util.ClassLoaderUtil;
 import br.com.anteros.helpme.util.PluginUtils;
 import br.com.anteros.persistence.schema.SchemaManager;
 import br.com.anteros.persistence.session.SQLSession;
@@ -30,7 +40,8 @@ public class Project extends TreeNode {
 	private Database database;
 	private SchemaManager schemaManager;
 
-	public Project(String name, String projectName, String fileConfiguration, List<Classpath> classpath) {
+	public Project(String name, String projectName, String fileConfiguration,
+			List<Classpath> classpath) {
 		this.projectName = projectName;
 		this.fileConfiguration = fileConfiguration;
 		this.name = new String[] { name };
@@ -39,9 +50,11 @@ public class Project extends TreeNode {
 
 	public Image getLeftImage() throws Exception {
 		if (isInitialized())
-			return AnterosHelpmePlugin.getDefault().getImage(AnterosHelpmePlugin.IMG_PROJECT_OPEN);
+			return AnterosHelpmePlugin.getDefault().getImage(
+					AnterosHelpmePlugin.IMG_PROJECT_OPEN);
 		else
-			return AnterosHelpmePlugin.getDefault().getImage(AnterosHelpmePlugin.IMG_PROJECT);
+			return AnterosHelpmePlugin.getDefault().getImage(
+					AnterosHelpmePlugin.IMG_PROJECT);
 	}
 
 	public String getProjectName() {
@@ -72,9 +85,12 @@ public class Project extends TreeNode {
 
 	@Override
 	public void addNode(IObjectNode node) throws Exception {
-		if (!(node instanceof Entities) && !(node instanceof Configuration) && !(node instanceof Database))
-			throw new ModelException("O objeto Project aceita apenas objetos do tipo Entities. Objeto recebido "
-					+ node.getClass().getName() + " -> " + node.getName());
+		if (!(node instanceof Entities) && !(node instanceof Configuration)
+				&& !(node instanceof Database))
+			throw new ModelException(
+					"O objeto Project aceita apenas objetos do tipo Entities. Objeto recebido "
+							+ node.getClass().getName() + " -> "
+							+ node.getName());
 		super.addNode(node);
 	}
 
@@ -87,22 +103,36 @@ public class Project extends TreeNode {
 			this.addNode(configuration);
 
 			entities = new Entities();
-			this.addNode(entities);			
+			this.addNode(entities);
 
-			IJavaProject javaProject = PluginUtils.findJavaProject(this.getProjectName());
-			ClassLoader oldLoader = Thread.currentThread().getContextClassLoader();
-			URLClassLoader newClassLoader = PluginUtils.getProjectClassLoader(javaProject);
+			IJavaProject javaProject = PluginUtils.findJavaProject(this
+					.getProjectName());
+
+			ClassLoader oldLoader = Thread.currentThread()
+					.getContextClassLoader();
+
+			URLClassLoader newClassLoader = PluginUtils
+					.getProjectClassLoader(javaProject);
+
 			try {
-				Thread.currentThread().setContextClassLoader(newClassLoader);
-				sessionFactory = SQLSessionFactoryHelper.getNewSessionFactory(ResourcesPlugin.getWorkspace().getRoot()
+				String fileName = ResourcesPlugin.getWorkspace().getRoot()
 						.getRawLocation().toOSString()
-						+ this.getFileConfiguration());
+						+ this.getFileConfiguration();
+				FileInputStream fis = new FileInputStream(fileName);
+
+				Thread.currentThread().setContextClassLoader(newClassLoader);
+
+				sessionFactory = SQLSessionFactoryHelper
+						.getNewSessionFactory(fis);
 				session = sessionFactory.openSession();
 
-				schemaManager = new SchemaManager(session, session.getEntityCacheManager(), true);
+				schemaManager = new SchemaManager(session,
+						session.getEntityCacheManager(), true);
 				
+				schemaManager.buildTablesSchema();
+
 				database = new Database();
-				database.setName(new String[]{session.getDialect().name()});
+				database.setName(new String[] { session.getDialect().name() });
 				this.addNode(database);
 
 				setInitialized(true);
@@ -111,10 +141,41 @@ public class Project extends TreeNode {
 			}
 		} catch (Exception e) {
 			AnterosHelpmePlugin.getDefault().setDefaultCursor();
-			AnterosHelpmePlugin.error("Não foi possível inicializar o Projeto "+this.getSimpleName()+"->"+this.getProjectName(), e, true);
+			AnterosHelpmePlugin.error("Não foi possível inicializar o Projeto "
+					+ this.getSimpleName() + "->" + this.getProjectName(), e,
+					true);
 		} finally {
 			AnterosHelpmePlugin.getDefault().setDefaultCursor();
 		}
+	}
+
+	private String getStringFromInputStream(InputStream is) {
+
+		BufferedReader br = null;
+		StringBuilder sb = new StringBuilder();
+
+		String line;
+		try {
+
+			br = new BufferedReader(new InputStreamReader(is));
+			while ((line = br.readLine()) != null) {
+				sb.append(line);
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return sb.toString();
+
 	}
 
 	public SQLSessionFactory getSessionFactory() {
@@ -141,15 +202,17 @@ public class Project extends TreeNode {
 		return database;
 	}
 
-	public static Project createFromPersistent(SQLProjectPersistent projectPersistent) {
+	public static Project createFromPersistent(
+			SQLProjectPersistent projectPersistent) {
 		List<Classpath> cp = new ArrayList<Classpath>();
 		for (String s : projectPersistent.classPath) {
 			Classpath c = new Classpath();
 			c.setClasspath(s);
 			cp.add(c);
 		}
-		return new Project(projectPersistent.name, projectPersistent.projectName, projectPersistent.fileConfiguration,
-				cp);
+		return new Project(projectPersistent.name,
+				projectPersistent.projectName,
+				projectPersistent.fileConfiguration, cp);
 	}
 
 	public SchemaManager getSchemaManager() {

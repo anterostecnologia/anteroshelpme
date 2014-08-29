@@ -10,8 +10,6 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.widgets.TreeItem;
 
-import br.com.anteros.helpme.treeviewer.ProjectTreeViewer.ListenerMeasure;
-import br.com.anteros.helpme.treeviewer.ProjectTreeViewer.ListenerPaint;
 import br.com.anteros.helpme.AnterosHelpmePlugin;
 
 public class ObjectTreeViewer extends TreeViewer implements Listener {
@@ -56,7 +54,7 @@ public class ObjectTreeViewer extends TreeViewer implements Listener {
 				}
 				root.setImage(node.getLeftImage());
 			} catch (Exception e) {
-				AnterosHelpmePlugin.error("N�o foi poss�vel desenhar o item "+item.getText()+" na �rvore do ObjectViewer.", e, true);
+				AnterosHelpmePlugin.error("Não foi possível desenhar o item "+item.getText()+" na árvore do ObjectViewer.", e, true);
 			}
 		}
 	}
@@ -78,7 +76,7 @@ public class ObjectTreeViewer extends TreeViewer implements Listener {
 						event.gc.drawImage(trailingImage, x, y);
 					}
 				} catch (Exception e) {
-					AnterosHelpmePlugin.error("N�o foi poss�vel desenhar o item "+item.getText()+" na �rvore do ObjectViewer.", e, true);
+					AnterosHelpmePlugin.error("Não foi possível desenhar o item "+item.getText()+" na árvore do ObjectViewer.", e, true);
 				}
 			}
 		}
@@ -97,7 +95,7 @@ public class ObjectTreeViewer extends TreeViewer implements Listener {
 						event.width += trailingImage.getBounds().width + 2;
 					}
 				} catch (Exception e) {
-					AnterosHelpmePlugin.error("N�o foi poss�vel desenhar o item "+item.getText()+" na �rvore do ObjectViewer.", e, true);
+					AnterosHelpmePlugin.error("Não foi possível desenhar o item "+item.getText()+" na árvore do ObjectViewer.", e, true);
 				}
 			}
 		}

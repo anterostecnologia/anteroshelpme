@@ -3,7 +3,6 @@ package br.com.anteros.helpme.treeviewer;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Event;
@@ -11,8 +10,8 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
-import br.com.anteros.helpme.model.ClasspathRoot;
 import br.com.anteros.helpme.AnterosHelpmePlugin;
+import br.com.anteros.helpme.model.ClasspathRoot;
 
 public class ClasspathTreeViewer extends TreeViewer /*implements Listener*/ {
 
@@ -107,7 +106,7 @@ public class ClasspathTreeViewer extends TreeViewer /*implements Listener*/ {
 					event.gc.drawImage(trailingImage, x, y);
 				}
 			} catch (Exception e) {
-				AnterosHelpmePlugin.error("N�o foi poss�vel desenhar o item "+item.getText()+" na �rvore do ClassPath.", e, true);
+				AnterosHelpmePlugin.error("Não foi possível desenhar o item "+item.getText()+" na árvore do ClassPath.", e, true);
 			}
 		}
 
@@ -124,7 +123,7 @@ public class ClasspathTreeViewer extends TreeViewer /*implements Listener*/ {
 					event.width += trailingImage.getBounds().width + 2;
 				}
 			} catch (Exception e) {
-				AnterosHelpmePlugin.error("N�o foi poss�vel desenhar o item "+item.getText()+" na �rvore do ClassPath.", e, true);
+				AnterosHelpmePlugin.error("Não foi possível desenhar o item "+item.getText()+" na árvore do ClassPath.", e, true);
 			}
 		}
 
