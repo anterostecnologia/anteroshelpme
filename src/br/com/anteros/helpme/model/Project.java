@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -90,7 +91,7 @@ public class Project extends TreeNode {
 			throw new ModelException(
 					"O objeto Project aceita apenas objetos do tipo Entities. Objeto recebido "
 							+ node.getClass().getName() + " -> "
-							+ node.getName());
+							+ Arrays.toString(node.getName()));
 		super.addNode(node);
 	}
 

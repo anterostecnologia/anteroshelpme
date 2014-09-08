@@ -1,5 +1,7 @@
 package br.com.anteros.helpme.model;
 
+import java.util.Arrays;
+
 import org.eclipse.swt.graphics.Image;
 
 import br.com.anteros.helpme.treeviewer.IObjectNode;
@@ -16,8 +18,8 @@ public class Configuration extends TreeNode {
 
 	@Override
 	public void addNode(IObjectNode node) throws Exception {
-		throw new ModelException("O objeto Configuration n�o aceita outros objetos. Objeto recebido "
-				+ node.getClass().getName() + " -> " + node.getName());
+		throw new ModelException("O objeto Configuration não aceita outros objetos. Objeto recebido "
+				+ node.getClass().getName() + " -> " + Arrays.toString(node.getName()));
 	}
 	
 	@Override

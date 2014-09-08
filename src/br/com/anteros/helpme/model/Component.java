@@ -1,5 +1,6 @@
 package br.com.anteros.helpme.model;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -82,7 +83,7 @@ public class Component extends TreeNode {
 	public void addNode(IObjectNode node) throws Exception {
 		if (!(node instanceof Validator))
 			throw new ModelException("O objeto Component aceita apenas objetos do tipo Validator. Objeto recebido "
-					+ node.getClass().getName() + " -> " + node.getName());
+					+ node.getClass().getName() + " -> " + Arrays.toString(node.getName()));
 		super.addNode(node);
 	}
 

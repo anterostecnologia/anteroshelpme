@@ -429,7 +429,8 @@ public abstract class AbstractCombo extends Composite {
 	 * @return The created button
 	 */
 	protected Button createButtonControl(int style) {
-		Button button = new Button(this, style|=SWT.NO_FOCUS);
+		int newStyle = style|SWT.NO_FOCUS;
+		Button button = new Button(this, newStyle);
 		return button;
 	}
 

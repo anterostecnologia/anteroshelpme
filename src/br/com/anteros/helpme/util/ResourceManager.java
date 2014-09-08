@@ -97,33 +97,24 @@ public class ResourceManager {
 	}
 
 	public static ImageDescriptor getImageDescriptor(URL url) {
-		try {
-			ImageDescriptor imageDesc = m_imageDescriptorMap.get(url);
-			if (imageDesc == null) {
-				if (url != null) {
-					return ImageDescriptor.createFromURL(url);
+		if (url != null) {
+			try {
+				ImageDescriptor imageDesc = m_imageDescriptorMap.get(url.toString());
+				if (imageDesc == null) {
+					if (url != null) {
+						return ImageDescriptor.createFromURL(url);
+					}
 				}
+				return imageDesc;
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			return imageDesc;
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 	public static Image getImage(URL url) {
-		try {
-			Image image = m_imageMap.get(url);
-			if (image == null) {
-				if (url != null) {
-					return ImageDescriptor.createFromURL(url).createImage();
-				}
-			}
-			return image;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+		return getImage(url.toString());
 	}
 
 	private static final int MISSING_IMAGE_SIZE = 10;

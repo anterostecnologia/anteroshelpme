@@ -448,16 +448,16 @@ public class ConfigurationPageWizard extends WizardPage {
 	}
 
 	public boolean isValid() {
-		if (fldProjectTitle.getText() == "") {
-			setErrorMessage("Informe o t�tulo do projeto.");
+		if ((fldProjectTitle.getText()).equals("")) {
+			setErrorMessage("Informe o título do projeto.");
 			return false;
 		}
-		if (fldJavaProject.getText() == "") {
+		if ((fldJavaProject.getText()).equals("")) {
 			setErrorMessage("Selecione um projeto java.");
 			return false;
 		}
-		if (fldConfigurationFile.getText() == "") {
-			setErrorMessage("Selecione o arquivo de configura��o no projeto java.");
+		if ((fldConfigurationFile.getText()).equals("")) {
+			setErrorMessage("Selecione o arquivo de configuração no projeto java.");
 			return false;
 		}
 		return true;

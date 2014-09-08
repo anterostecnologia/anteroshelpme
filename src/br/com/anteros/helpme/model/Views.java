@@ -1,5 +1,7 @@
 package br.com.anteros.helpme.model;
 
+import java.util.Arrays;
+
 import org.eclipse.swt.graphics.Image;
 
 import br.com.anteros.helpme.AnterosHelpmePlugin;
@@ -18,7 +20,7 @@ public class Views extends TreeNode {
 	public void addNode(IObjectNode node) throws Exception {
 		if (!(node instanceof View))
 			throw new ModelException("O objeto Views aceita apenas objetos do tipo View. Objeto recebido "
-					+ node.getClass().getName() + " -> " + node.getName());
+					+ node.getClass().getName() + " -> " + Arrays.toString(node.getName()));
 		super.addNode(node);
 	}
 

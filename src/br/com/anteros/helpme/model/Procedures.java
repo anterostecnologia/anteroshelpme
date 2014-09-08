@@ -1,5 +1,6 @@
 package br.com.anteros.helpme.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.swt.graphics.Image;
@@ -22,7 +23,7 @@ public class Procedures extends TreeNode {
 	public void addNode(IObjectNode node) throws Exception {
 		if (!(node instanceof Procedure))
 			throw new ModelException("O objeto Procedures aceita apenas objetos do tipo Procedure. Objeto recebido "
-					+ node.getClass().getName() + " -> " + node.getName());
+					+ node.getClass().getName() + " -> " + Arrays.toString(node.getName()));
 		super.addNode(node);
 	}
 

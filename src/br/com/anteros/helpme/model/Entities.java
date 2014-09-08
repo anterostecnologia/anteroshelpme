@@ -2,6 +2,7 @@ package br.com.anteros.helpme.model;
 
 import java.io.Serializable;
 import java.net.URLClassLoader;
+import java.util.Arrays;
 import java.util.Iterator;
 
 import org.eclipse.jdt.core.IJavaProject;
@@ -26,7 +27,7 @@ public class Entities extends TreeNode {
 	public void addNode(IObjectNode node) throws Exception {
 		if (!(node instanceof Entity))
 			throw new ModelException("O objeto Entities aceita apenas objetos do tipo Entity. Objeto recebido "
-					+ node.getClass().getName() + " -> " + node.getName());
+					+ node.getClass().getName() + " -> " + Arrays.toString(node.getName()));
 		super.addNode(node);
 	}
 

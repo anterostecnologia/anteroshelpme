@@ -31,6 +31,9 @@ public abstract class ProgressDialog {
         if (parentShell != null) {
             display2 = parentShell.getDisplay();
         }
+        if (display2==null){
+        	throw new OperationCanceledException();
+        }
         final Display display = display2;
         final InvocationTargetException[] iteHolder = new InvocationTargetException[1];
         try {

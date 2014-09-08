@@ -121,7 +121,7 @@ public class DateTimeFormatter extends AbstractFormatter {
 	/** Calendar containing the current value */
 	protected Calendar calendar;
 	/** Date formatter for display */
-	protected SimpleDateFormat sdfDisplay;
+	protected SimpleDateFormat sdfDisplay = new SimpleDateFormat();
 	/** Input mask */
 	protected StringBuffer inputMask;
 	/** Current edited value */
@@ -131,7 +131,7 @@ public class DateTimeFormatter extends AbstractFormatter {
 	/** Number of fields in edit pattern */
 	protected int fieldCount;
 	/** Year limit for 2 digits year field */
-	protected int yearStart;
+	protected int yearStart=1900;
 	/** Key listener on the Text widget */
 	protected KeyListener klistener;
 	/** Focus listener on the Text widget */

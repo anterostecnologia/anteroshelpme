@@ -1,5 +1,7 @@
 package br.com.anteros.helpme.model;
 
+import java.util.Arrays;
+
 import org.eclipse.swt.graphics.Image;
 
 import br.com.anteros.helpme.AnterosHelpmePlugin;
@@ -34,7 +36,7 @@ public class Column extends TreeNode {
 	@Override
 	public void addNode(IObjectNode node) throws Exception {
 		throw new ModelException("O objeto Column não aceita outros objetos. Objeto recebido "
-				+ node.getClass().getName() + " -> " + node.getName());
+				+ node.getClass().getName() + " -> " + Arrays.toString(node.getName()));
 	}
 
 	public ColumnSchema getColumnSchema() {

@@ -1,6 +1,7 @@
 package br.com.anteros.helpme.model;
 
 import java.net.URLClassLoader;
+import java.util.Arrays;
 
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.swt.graphics.Image;
@@ -23,7 +24,7 @@ public class Tables extends TreeNode {
 	public void addNode(IObjectNode node) throws Exception {
 		if (!(node instanceof Table))
 			throw new ModelException("O objeto Tables aceita apenas objetos do tipo Table. Objeto recebido "
-					+ node.getClass().getName() + " -> " + node.getName());
+					+ node.getClass().getName() + " -> " + Arrays.toString(node.getName()));
 		super.addNode(node);
 	}
 	

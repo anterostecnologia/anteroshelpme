@@ -28,9 +28,11 @@ public class ArrayUtil {
 		}
 		List list = new LinkedList(Arrays.asList(array1));
 
-		for (int i = 0; i < array2.length; i++) {
-			if ((!list.contains(array2[i])) && (array2[i] != null)) {
-				list.add(array2[i]);
+		if (array2 != null) {
+			for (int i = 0; i < array2.length; i++) {
+				if ((!list.contains(array2[i])) && (array2[i] != null)) {
+					list.add(array2[i]);
+				}
 			}
 		}
 		if (conv == null)

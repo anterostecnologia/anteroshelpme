@@ -1,6 +1,7 @@
 package br.com.anteros.helpme.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.swt.graphics.Image;
@@ -30,7 +31,7 @@ public class ProjectManager extends TreeNode {
 	public void addNode(IObjectNode node) throws Exception {
 		if (!(node instanceof Project))
 			throw new ModelException("O objeto Projects aceita apenas objetos do tipo Project. Objeto recebido "
-					+ node.getClass().getName() + " -> " + node.getName());
+					+ node.getClass().getName() + " -> " + Arrays.toString(node.getName()));
 		super.addNode(node);
 	}
 

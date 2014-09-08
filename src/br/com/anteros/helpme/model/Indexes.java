@@ -1,5 +1,6 @@
 package br.com.anteros.helpme.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.swt.graphics.Image;
@@ -21,7 +22,7 @@ public class Indexes extends TreeNode {
 	public void addNode(IObjectNode node) throws Exception {
 		if (!(node instanceof Index))
 			throw new ModelException("O objeto Indexes aceita apenas objetos do tipo Index. Objeto recebido "
-					+ node.getClass().getName() + " -> " + node.getName());
+					+ node.getClass().getName() + " -> " + Arrays.toString(node.getName()));
 		super.addNode(node);
 	}
 

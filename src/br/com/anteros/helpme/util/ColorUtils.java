@@ -23,11 +23,11 @@ public class ColorUtils {
 			s = 0.0F;
 		}
 		if (s != 0.0F) {
-			if (r == maxRGB)
+			if (Math.abs(r - maxRGB) < .0000001)
 				h = (g - b) / delta;
-			else if (g == maxRGB)
+			else if (Math.abs(g - maxRGB) < .0000001)
 				h = 2.0F + (b - r) / delta;
-			else if (b == maxRGB)
+			else if (Math.abs(b - maxRGB) < .0000001)
 				h = 4.0F + (r - g) / delta;
 		} else {
 			h = -1.0F;

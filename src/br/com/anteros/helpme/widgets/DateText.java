@@ -8,7 +8,8 @@ import org.eclipse.swt.widgets.Composite;
 public class DateText extends CustomText {
 
 	public DateText(Composite parent, int style) {
-		super(parent, style|=SWT.FLAT);
+		super(parent, style);
+		this.style = style|SWT.FLAT;
 	}
 	
 	@Override

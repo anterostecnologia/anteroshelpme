@@ -1,5 +1,7 @@
 package br.com.anteros.helpme.model;
 
+import java.util.Arrays;
+
 import org.eclipse.swt.graphics.Image;
 
 import br.com.anteros.helpme.AnterosHelpmePlugin;
@@ -19,7 +21,7 @@ public class Entity extends TreeNode {
 	public void addNode(IObjectNode node) throws Exception {
 		if (!(node instanceof Component))
 			throw new ModelException("O objeto Entity aceita apenas objetos do tipo Component. Objeto recebido "
-					+ node.getClass().getName() + " -> " + node.getName());
+					+ node.getClass().getName() + " -> " + Arrays.toString(node.getName()));
 		super.addNode(node);
 	}
 

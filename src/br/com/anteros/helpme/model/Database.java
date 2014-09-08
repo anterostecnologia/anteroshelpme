@@ -1,5 +1,7 @@
 package br.com.anteros.helpme.model;
 
+import java.util.Arrays;
+
 import org.eclipse.swt.graphics.Image;
 
 import br.com.anteros.helpme.treeviewer.IObjectNode;
@@ -41,7 +43,7 @@ public class Database extends TreeNode {
 				&& !(node instanceof Generators) && !(node instanceof Views))
 			throw new ModelException(
 					"O objeto Database aceita apenas objetos do tipo Tables,Functions,Procedures,Views e Generators. Objeto recebido "
-							+ node.getClass().getName() + " -> " + node.getName());
+							+ node.getClass().getName() + " -> " + Arrays.toString(node.getName()));
 		super.addNode(node);
 	}
 

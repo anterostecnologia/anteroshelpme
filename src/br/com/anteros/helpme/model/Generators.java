@@ -1,5 +1,6 @@
 package br.com.anteros.helpme.model;
 
+import java.util.Arrays;
 import java.util.Set;
 
 import org.eclipse.swt.graphics.Image;
@@ -24,7 +25,7 @@ public class Generators extends TreeNode {
 	public void addNode(IObjectNode node) throws Exception {
 		if (!(node instanceof Generator))
 			throw new ModelException("O objeto Generators aceita apenas objetos do tipo Generator. Objeto recebido "
-					+ node.getClass().getName() + " -> " + node.getName());
+					+ node.getClass().getName() + " -> " + Arrays.toString(node.getName()));
 		super.addNode(node);
 	}
 	

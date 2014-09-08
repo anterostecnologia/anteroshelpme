@@ -37,6 +37,7 @@ import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
+import br.com.anteros.core.utils.Assert;
 import br.com.anteros.core.utils.ReflectionUtils;
 import br.com.anteros.helpme.AnterosHelpmePlugin;
 import br.com.anteros.helpme.actions.ClearSQLAction;
@@ -352,10 +353,9 @@ public class SQLEditorView extends EditorPart implements SQLSessionListener {
 	}
 
 	public void setResultData(SQLSessionResult<?> result) {
+		Assert.notNull(result);
 		variableRoot.removeAll();
 		Project project = getSelectedProject();
-		EntityCache cache = project.getSession().getEntityCacheManager()
-				.getEntityCache(getSelectedResultClass());
 		if ((result != null) && ((result.getResultList() != null))) {
 			VariableObject vo;
 			try {
@@ -369,22 +369,27 @@ public class SQLEditorView extends EditorPart implements SQLSessionListener {
 					i++;
 				}
 			} catch (Exception e) {
-				AnterosHelpmePlugin
-						.error("Não foi possível processar os objetos recebidos na execução do SQL.", e, true);
+				AnterosHelpmePlugin.error("Não foi possível processar os objetos recebidos na execução do SQL.", e,
+						true);
 			}
 		}
 		resultObjectTreeviewer.refresh();
 
-		try {
-			DataSet dataSet = new DataSet(result.getResultSet());
-			gridResult = new DataSetTable(pageControlResultView, dataSet, "Teste", false);
-			tabResult.setControl(gridResult.getControl());
-		} catch (Exception e) {
-			AnterosHelpmePlugin.error("Não foi possível processar o ResultSet recebido na execução do SQL.", e, true);
-		} finally {
+		if (result.getResultSet() == null) {
+			AnterosHelpmePlugin.error("Não foi possível processar o ResultSet recebido na execução do SQL.", true);
+		} else {
 			try {
-				result.getResultSet().close();
+				DataSet dataSet = new DataSet(result.getResultSet());
+				gridResult = new DataSetTable(pageControlResultView, dataSet, "Teste", false);
+				tabResult.setControl(gridResult.getControl());
 			} catch (Exception e) {
+				AnterosHelpmePlugin.error("Não foi possível processar o ResultSet recebido na execução do SQL.", e,
+						true);
+			} finally {
+				try {
+					result.getResultSet().close();
+				} catch (Exception e) {
+				}
 			}
 		}
 	}
@@ -428,7 +433,8 @@ public class SQLEditorView extends EditorPart implements SQLSessionListener {
 	@Override
 	public void onExecuteSQL(String sql, NamedParameter[] parameters) {
 		try {
-			StyledText text = AnterosHelpmePlugin.getDefault().getDefaultConsoleView().getSourceViewer().getTextWidget();
+			StyledText text = AnterosHelpmePlugin.getDefault().getDefaultConsoleView().getSourceViewer()
+					.getTextWidget();
 			text.append("Sql-> " + sql);
 			if ((parameters != null) && (parameters.length > 0)) {
 				text.append("\nParameters -> ");
@@ -485,7 +491,7 @@ public class SQLEditorView extends EditorPart implements SQLSessionListener {
 
 	@Override
 	public void onClose(SQLSession session) {
-		
+
 	}
 
 }

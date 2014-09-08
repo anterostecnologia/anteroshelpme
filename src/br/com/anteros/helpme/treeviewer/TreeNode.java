@@ -115,10 +115,9 @@ public abstract class TreeNode implements IObjectNode {
 
 	@Override
 	public String getSimpleName() {
-		String[] lst = getName();
-		if ((lst == null) && (lst.length == 0))
+		if ((getName() == null) && (getName().length == 0))
 			return "";
-		return lst[0];
+		return getName()[0];
 	}
 
 	@Override

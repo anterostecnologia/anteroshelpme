@@ -1,5 +1,7 @@
 package br.com.anteros.helpme.model;
 
+import java.util.Arrays;
+
 import org.eclipse.swt.graphics.Image;
 
 import br.com.anteros.helpme.AnterosHelpmePlugin;
@@ -25,7 +27,7 @@ public class Procedure extends TreeNode {
 	public void addNode(IObjectNode node) throws Exception {
 		if (!(node instanceof Parameter))
 			throw new ModelException("O objeto Procedure aceita apenas objetos do tipo Parameter. Objeto recebido "
-					+ node.getClass().getName() + " -> " + node.getName());
+					+ node.getClass().getName() + " -> " + Arrays.toString(node.getName()));
 		super.addNode(node);
 	}
 

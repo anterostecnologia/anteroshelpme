@@ -1,5 +1,7 @@
 package br.com.anteros.helpme.model;
 
+import java.util.Arrays;
+
 import org.eclipse.swt.graphics.Image;
 
 import br.com.anteros.helpme.AnterosHelpmePlugin;
@@ -29,7 +31,7 @@ public class Index extends TreeNode {
 	public void addNode(IObjectNode node) throws Exception {
 		if (!(node instanceof Column))
 			throw new ModelException("O objeto Index aceita apenas objetos do tipo Column. Objeto recebido "
-					+ node.getClass().getName() + " -> " + node.getName());
+					+ node.getClass().getName() + " -> " + Arrays.toString(node.getName()));
 		super.addNode(node);
 	}
 

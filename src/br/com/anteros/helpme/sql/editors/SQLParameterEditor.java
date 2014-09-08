@@ -194,7 +194,7 @@ public class SQLParameterEditor extends Dialog {
 					check = (Button) objects[1];
 					substituition = (Button) objects[2];
 				}
-				if (!check.getSelection()) {
+				if ((check!=null) && (!check.getSelection())) {
 					if (control instanceof CustomText) {
 						if (substituition.getSelection()) {
 							int index = parameters.indexOf(parameter);

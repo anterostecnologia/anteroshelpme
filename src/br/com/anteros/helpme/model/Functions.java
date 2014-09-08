@@ -1,5 +1,6 @@
 package br.com.anteros.helpme.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.swt.graphics.Image;
@@ -25,7 +26,7 @@ public class Functions extends TreeNode {
 	public void addNode(IObjectNode node) throws Exception {
 		if (!(node instanceof Function))
 			throw new ModelException("O objeto Functions aceita apenas objetos do tipo Function. Objeto recebido "
-					+ node.getClass().getName() + " -> " + node.getName());
+					+ node.getClass().getName() + " -> " + Arrays.toString(node.getName()));
 		super.addNode(node);
 	}
 	
