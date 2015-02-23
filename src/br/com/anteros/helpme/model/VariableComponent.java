@@ -30,7 +30,7 @@ public class VariableComponent extends TreeNode {
 			} else if (ReflectionUtils.isImplementsInterface(descriptionField.getField().getType(), List.class)) {
 				return AnterosHelpmePlugin.getDefault().getImage(AnterosHelpmePlugin.IMG_ENTITY_LIST);
 			}
-		} else if (descriptionField.isCollectionMapTable()) {
+		} else if (descriptionField.isMapTable()) {
 			return AnterosHelpmePlugin.getDefault().getImage(AnterosHelpmePlugin.IMG_COLLECTION_MAP);
 		} else if (descriptionField.isCollectionTable()) {
 			return AnterosHelpmePlugin.getDefault().getImage(AnterosHelpmePlugin.IMG_COLLECTION_LIST);
@@ -53,7 +53,7 @@ public class VariableComponent extends TreeNode {
 
 	@Override
 	public boolean hasChildren() {
-		if (descriptionField.isCollection() || descriptionField.isJoinTable() || descriptionField.isRelationShip())
+		if (descriptionField.isAnyCollectionOrMap() || descriptionField.isJoinTable() || descriptionField.isRelationShip())
 			return true;
 		return false;
 

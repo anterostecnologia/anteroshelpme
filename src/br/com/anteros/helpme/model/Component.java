@@ -31,7 +31,7 @@ public class Component extends TreeNode {
 			} else if (ReflectionUtils.isImplementsInterface(descriptionField.getField().getType(), List.class)) {
 				return AnterosHelpmePlugin.getDefault().getImage(AnterosHelpmePlugin.IMG_ENTITY_LIST);
 			}
-		} else if (descriptionField.isCollectionMapTable()) {
+		} else if (descriptionField.isMapTable()) {
 			return AnterosHelpmePlugin.getDefault().getImage(AnterosHelpmePlugin.IMG_COLLECTION_MAP);
 		} else if (descriptionField.isCollectionTable()) {
 			return AnterosHelpmePlugin.getDefault().getImage(AnterosHelpmePlugin.IMG_COLLECTION_LIST);
@@ -54,7 +54,7 @@ public class Component extends TreeNode {
 
 	@Override
 	public String getColumnName() {
-		if (!descriptionField.isCollection() && (!descriptionField.isJoinTable())) {
+		if (!descriptionField.isAnyCollectionOrMap() && (!descriptionField.isJoinTable())) {
 			StringBuffer columnName = new StringBuffer();
 			boolean append = false;
 			for (DescriptionColumn column : descriptionField.getDescriptionColumns()) {
@@ -89,7 +89,7 @@ public class Component extends TreeNode {
 
 	@Override
 	public boolean hasChildren() {
-		if (descriptionField.isCollection() || descriptionField.isJoinTable() || descriptionField.isRelationShip())
+		if (descriptionField.isAnyCollectionOrMap() || descriptionField.isJoinTable() || descriptionField.isRelationShip())
 			return true;
 		return false;
 	}

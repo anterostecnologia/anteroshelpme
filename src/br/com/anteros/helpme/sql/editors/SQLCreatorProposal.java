@@ -206,7 +206,7 @@ public class SQLCreatorProposal {
 					} else if (ReflectionUtils.isImplementsInterface(descriptionField.getField().getType(), List.class)) {
 						img = AnterosHelpmePlugin.getDefault().getImage(AnterosHelpmePlugin.IMG_ENTITY_LIST);
 					}
-				} else if (descriptionField.isCollectionMapTable()) {
+				} else if (descriptionField.isMapTable()) {
 					img = AnterosHelpmePlugin.getDefault().getImage(AnterosHelpmePlugin.IMG_COLLECTION_MAP);
 				} else if (descriptionField.isCollectionTable()) {
 					img = AnterosHelpmePlugin.getDefault().getImage(AnterosHelpmePlugin.IMG_COLLECTION_LIST);

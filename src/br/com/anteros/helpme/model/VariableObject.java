@@ -91,7 +91,7 @@ public class VariableObject extends TreeNode {
 										descriptionField.getName(), "" });
 								this.addNode(vo);
 							} else if (descriptionField.isCollectionTable()
-									|| descriptionField.isCollectionMapTable()) {
+									|| descriptionField.isMapTable()) {
 								vc = new VariableComponent(fieldValue,
 										descriptionField);
 								vc.setName(new String[] {
